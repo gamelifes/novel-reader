@@ -45,7 +45,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
         await _loadChapterContent(_chapters[_currentChapterIndex]);
       }
     } catch (e) {
-      print('Load chapters error: $e');
+      // Error loading chapters
     }
   }
 
@@ -61,28 +61,28 @@ class _ReaderScreenState extends State<ReaderScreen> {
         });
 
         // 更新阅读进度
-        context.read<BookshelfProvider>().updateReadingProgress(
-              widget.novel.id,
-              chapter.id,
-              chapter.index,
-            );
+        if (mounted) {
+          context.read<BookshelfProvider>().updateReadingProgress(
+                widget.novel.id,
+                chapter.id,
+                chapter.index,
+              );
+        }
       }
     } catch (e) {
-      print('Load chapter content error: $e');
       setState(() => _isLoading = false);
     }
   }
 
   List<String> _splitContent(String content) {
     // 简单分页逻辑
-    final settings = context.read<SettingsProvider>();
-    final pageSize = 1000; // 每页大约字符数
+    const pageSize = 1000; // 每页大约字符数
 
     if (content.length <= pageSize) {
       return [content];
     }
 
-    List<String> pages = [];
+    final List<String> pages = [];
     for (int i = 0; i < content.length; i += pageSize) {
       int end = (i + pageSize < content.length) ? i + pageSize : content.length;
       // 尽量在句号或换行处分页
@@ -390,7 +390,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return Container(
+        return SizedBox(
           height: MediaQuery.of(context).size.height * 0.7,
           child: Column(
             children: [

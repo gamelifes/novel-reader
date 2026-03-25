@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/models.dart';
-import '../providers/providers.dart';
 import '../screens/novel_detail_screen.dart';
 
 class NovelCard extends StatelessWidget {

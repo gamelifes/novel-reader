@@ -25,7 +25,6 @@ class NovelService {
       }
       return [];
     } catch (e) {
-      print('Search novels error: $e');
       // 返回模拟数据用于测试
       return _getMockNovels();
     }
@@ -38,7 +37,6 @@ class NovelService {
       final novels = await searchNovels(novelId, limit: 1);
       return novels.isNotEmpty ? novels.first : null;
     } catch (e) {
-      print('Get novel detail error: $e');
       return _getMockNovels().firstWhere(
         (n) => n.id == novelId,
         orElse: () => _getMockNovels().first,
@@ -73,7 +71,6 @@ class NovelService {
 
       return [];
     } catch (e) {
-      print('Get chapter list error: $e');
       // 返回模拟数据用于测试
       return _getMockChapters(novelId);
     }
@@ -121,7 +118,6 @@ class NovelService {
 
       return null;
     } catch (e) {
-      print('Get chapter content error: $e');
       return _getMockChapterContent(itemId);
     }
   }

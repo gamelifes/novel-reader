@@ -20,16 +20,12 @@ class ApiService {
 
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
-        print('Request: ${options.method} ${options.path}');
-        print('Params: ${options.queryParameters}');
         return handler.next(options);
       },
       onResponse: (response, handler) {
-        print('Response: ${response.statusCode}');
         return handler.next(response);
       },
       onError: (DioException error, handler) {
-        print('Error: ${error.message}');
         return handler.next(error);
       },
     ));

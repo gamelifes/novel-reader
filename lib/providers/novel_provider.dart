@@ -4,32 +4,32 @@ import '../services/novel_service.dart';
 
 class NovelProvider extends ChangeNotifier {
   final NovelService _novelService = NovelService();
-  
+
   List<Novel> _novels = [];
   List<Novel> get novels => _novels;
-  
+
   bool _isLoading = false;
   bool get isLoading => _isLoading;
-  
+
   String? _error;
   String? get error => _error;
-  
+
   // 热门小说
   List<Novel> _popularNovels = [];
   List<Novel> get popularNovels => _popularNovels;
-  
+
   // 搜索历史
-  List<String> _searchHistory = [];
+  final List<String> _searchHistory = [];
   List<String> get searchHistory => _searchHistory;
 
   /// 搜索小说
   Future<void> searchNovels(String keyword) async {
     if (keyword.isEmpty) return;
-    
+
     _isLoading = true;
     _error = null;
     notifyListeners();
-    
+
     try {
       _novels = await _novelService.searchNovels(keyword);
       _addToSearchHistory(keyword);
@@ -46,7 +46,7 @@ class NovelProvider extends ChangeNotifier {
   Future<void> fetchPopularNovels() async {
     _isLoading = true;
     notifyListeners();
-    
+
     try {
       _popularNovels = await _novelService.getPopularNovels();
     } catch (e) {

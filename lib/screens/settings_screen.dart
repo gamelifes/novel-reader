@@ -234,7 +234,7 @@ class SettingsScreen extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 );
-              }).toList(),
+              }),
             ],
           ),
         );

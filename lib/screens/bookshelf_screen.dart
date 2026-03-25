@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/bookshelf_provider.dart';
-import '../providers/settings_provider.dart';
 import '../widgets/novel_card.dart';
 import 'novel_detail_screen.dart';
 
@@ -66,9 +65,9 @@ class BookshelfScreen extends StatelessWidget {
                     right: 0,
                     child: Container(
                       padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.black54,
-                        borderRadius: const BorderRadius.vertical(
+                        borderRadius: BorderRadius.vertical(
                           bottom: Radius.circular(12),
                         ),
                       ),
